@@ -267,6 +267,10 @@ function computeDivision(input1, input2) {
     return { error: "Error: Please enter valid integers only." };
   }
 
+  if (a < 0 || b < 0) {
+    return { error: "INVALID INPUT: Negative numbers are not allowed." };
+  }
+
   if (a === 0 || b === 0) {
     return { error: "Error: Integers cannot be zero." };
   }
