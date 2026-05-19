@@ -272,23 +272,20 @@ function computePalindrome(str) {
   if (!str || str.trim() === "") {
     return { error: "INVALID: Input cannot be empty or whitespace" };
   }
-  if (str.includes(" ")) {
-    return { error: "INVALID: Input cannot contain spaces" };
-  }
-  if (str.startsWith("-")) {
-    return { error: "INVALID: Negative numbers are not allowed" };
-  }
-  if (str.includes(".")) {
-    return { error: "INVALID: Decimal numbers are not allowed" };
-  }
-  if (/[^a-zA-Z0-9]/.test(str)) {
-    return { error: "INVALID: Special characters are not allowed" };
-  }
 
-  const sanitized = str.toLowerCase();
+  // Remove spaces for display, length, and check
+  const strWithoutSpaces = str.replace(/\s+/g, "");
+
+  const sanitized = strWithoutSpaces.toLowerCase();
   const reversed = sanitized.split("").reverse().join("");
   const isPalindrome = sanitized === reversed;
-  return { isPalindrome, normalized: sanitized, length: str.length };
+
+  return {
+    isPalindrome,
+    str: strWithoutSpaces,
+    normalized: sanitized,
+    length: strWithoutSpaces.length,
+  };
 }
 
 function computeDivision(input1, input2) {
